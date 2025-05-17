@@ -13,6 +13,5 @@ void main() {
       expect(ApinionConfig.base, 'https://jsonplaceholder.typicode.com');
       expect(ApinionConfig.timeout, const Duration(seconds: 10));
     });
-
   });
 }

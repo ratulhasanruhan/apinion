@@ -27,11 +27,11 @@ class ApinionClient {
   }
 
   static Future<ResponseData> _request(
-      String method,
-      String endpoint, {
-        Map<String, dynamic>? body,
-        Map<String, String>? headers,
-      }) async {
+    String method,
+    String endpoint, {
+    Map<String, dynamic>? body,
+    Map<String, String>? headers,
+  }) async {
     final uri = _getUri(endpoint);
     final requestHeaders = _getHeaders(extraHeaders: headers);
 
@@ -77,7 +77,8 @@ class ApinionClient {
       ApinionLogger.debug('📨 Response: ${response.body}');
       return _handleResponse(response);
     } on TimeoutException {
-      ApinionLogger.error('⏰ Request timed out after ${ApinionConfig.timeout.inSeconds} seconds.');
+      ApinionLogger.error(
+          '⏰ Request timed out after ${ApinionConfig.timeout.inSeconds} seconds.');
       return ResponseData(
         isSuccess: false,
         statusCode: 408,
@@ -127,32 +128,32 @@ class ApinionClient {
   }
 
   static Future<ResponseData> get(String endpoint,
-      {Map<String, String>? headers}) =>
+          {Map<String, String>? headers}) =>
       _request('GET', endpoint, headers: headers);
 
   static Future<ResponseData> post(String endpoint,
-      {Map<String, dynamic>? body, Map<String, String>? headers}) =>
+          {Map<String, dynamic>? body, Map<String, String>? headers}) =>
       _request('POST', endpoint, body: body, headers: headers);
 
   static Future<ResponseData> put(String endpoint,
-      {Map<String, dynamic>? body, Map<String, String>? headers}) =>
+          {Map<String, dynamic>? body, Map<String, String>? headers}) =>
       _request('PUT', endpoint, body: body, headers: headers);
 
   static Future<ResponseData> delete(String endpoint,
-      {Map<String, dynamic>? body, Map<String, String>? headers}) =>
+          {Map<String, dynamic>? body, Map<String, String>? headers}) =>
       _request('DELETE', endpoint, body: body, headers: headers);
 
   static Future<ResponseData> patch(String endpoint,
-      {Map<String, dynamic>? body, Map<String, String>? headers}) =>
+          {Map<String, dynamic>? body, Map<String, String>? headers}) =>
       _request('PATCH', endpoint, body: body, headers: headers);
 
   static Future<ResponseData> uploadImage(
-      String endpoint, {
-        required List<int> imageBytes,
-        required String fileName,
-        Map<String, String>? fields,
-        Map<String, String>? headers,
-      }) async {
+    String endpoint, {
+    required List<int> imageBytes,
+    required String fileName,
+    Map<String, String>? fields,
+    Map<String, String>? headers,
+  }) async {
     final uri = _getUri(endpoint);
     final requestHeaders = <String, String>{};
     if (ApinionConfig.key != null) {
@@ -171,17 +172,19 @@ class ApinionClient {
         request.fields.addAll(fields);
       }
 
-      request.files.add(http.MultipartFile.fromBytes('file', imageBytes,
-          filename: fileName));
+      request.files.add(
+          http.MultipartFile.fromBytes('file', imageBytes, filename: fileName));
 
-      final streamedResponse = await request.send().timeout(ApinionConfig.timeout);
+      final streamedResponse =
+          await request.send().timeout(ApinionConfig.timeout);
       final response = await http.Response.fromStream(streamedResponse);
 
       ApinionLogger.debug('📨 Response: ${response.body}');
 
       return _handleResponse(response);
     } on TimeoutException {
-      ApinionLogger.error('⏰ Upload timed out after ${ApinionConfig.timeout.inSeconds} seconds.');
+      ApinionLogger.error(
+          '⏰ Upload timed out after ${ApinionConfig.timeout.inSeconds} seconds.');
       return ResponseData(
         isSuccess: false,
         statusCode: 408,
