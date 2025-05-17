@@ -11,3 +11,39 @@
 - 🪵 Built-in pretty logger using `logger` package  
 
 ---
+<p align="center">
+  <a href="https://ratulhasan.gitbook.io/apinion/" target="_blank">
+    <img src="https://img.shields.io/badge/View-Documentation-blue?style=for-the-badge&logo=readthedocs" alt="Documentation Button"/>
+  </a>
+</p>
+
+---
+
+## 🔍 Example
+```
+import 'package:apinion/apinion.dart';
+
+void main() async {
+  ApinionConfig.init(
+    baseUrl: 'https://jsonplaceholder.typicode.com',
+  );
+
+  // GET request
+  final getResponse = await ApinionClient.get('/posts/1');
+  if (getResponse.isSuccess) {
+    print('Title: ${getResponse.responseData['title']}');
+  } else {
+    print('Error: ${getResponse.errorMessage}');
+  }
+
+  // POST request
+  final postResponse = await ApinionClient.post('/posts', body: {
+    'title': 'foo',
+    'body': 'bar',
+    'userId': 1,
+  });
+  if (postResponse.isSuccess) {
+    print('New Post ID: ${postResponse.responseData['id']}');
+  }
+}
+```
