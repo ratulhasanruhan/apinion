@@ -1,7 +1,31 @@
 name: apinion
 description: "API calling get easier"
 version: 0.0.1
-homepage:
+homepage: https://github.com/ratulhasanruhan/apinion
+repository: https://github.com/ratulhasanruhan/apinion
+issue_tracker: https://github.com/ratulhasanruhan/apinion/issues
+documentation: https://github.com/ratulhasanruhan/apinion
+
+topics:
+  - api
+  - http
+  - logger
+  - network
+
+
+platforms:
+    android:
+    ios:
+    macos:
+    web:
+    windows:
+    linux:
+
+
+screenshots:
+  - description: "Apinion Logo"
+    path: example/apinion_logo.png
+
 
 environment:
   sdk: ^3.5.4
