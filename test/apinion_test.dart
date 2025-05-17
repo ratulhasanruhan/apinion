@@ -6,11 +6,11 @@ void main() {
   group('ApinionConfig', () {
     test('Initialization with base URL and timeout', () {
       ApinionConfig.init(
-        base: 'https://jsonplaceholder.typicode.com',
+        baseUrl: 'https://jsonplaceholder.typicode.com',
         customTimeout: const Duration(seconds: 10),
       );
 
-      expect(ApinionConfig.baseUrl, 'https://jsonplaceholder.typicode.com');
+      expect(ApinionConfig.base, 'https://jsonplaceholder.typicode.com');
       expect(ApinionConfig.timeout, const Duration(seconds: 10));
     });
 
