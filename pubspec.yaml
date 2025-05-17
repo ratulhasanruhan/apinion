@@ -1,6 +1,6 @@
 name: apinion
 description: "Simplify API calls in Dart & Flutter with Apinion — clean syntax, built-in logging, and easy setup."
-version: 0.0.2
+version: 0.0.3
 homepage: https://ratulhasan.gitbook.io/apinion/
 repository: https://github.com/ratulhasanruhan/apinion
 issue_tracker: https://github.com/ratulhasanruhan/apinion/issues

@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Maintain package score.
+
+## 0.0.3
+
+* Fix: Update README.md to include usage instructions.
